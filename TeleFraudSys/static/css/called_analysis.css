@@ -1,0 +1,40 @@
+#container {
+    width: 100%;
+    position: relative;
+    padding: 20px 0;
+}
+#container #content {
+    width: 1300px;
+    margin: 20px auto;
+}
+#container .tit {
+    margin:10px 0;
+    font-weight: 700;
+}
+#container #content .block {
+    margin-top: 5px;
+    padding:10px 20px;
+    background: rgba(214, 214, 214, 0.2);
+}
+/* 关系图 */
+div#Boxplot {
+    width: 1200px;
+    height: 600px;
+    margin:20px auto;
+}
+.block-0 {
+    display: none;
+}
+#totalNum span {
+    display: inline-block;
+    width:280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top:5px;
+    font-size:14px;
+    font-weight: 700;
+}
+#totalNum span b {
+    color:#ff5722;
+}

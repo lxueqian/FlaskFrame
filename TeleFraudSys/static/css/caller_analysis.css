@@ -1,0 +1,109 @@
+#container {
+    width: 100%;
+    position: relative;
+    padding: 20px 0;
+}
+#container #content {
+    width: 1300px;
+    margin: 20px auto;
+}
+#container .tit {
+    margin:10px 0;
+    font-weight: 700;
+}
+#container #content .block {
+    margin-top: 5px;
+    padding:10px 20px;
+    background: rgba(214, 214, 214, 0.2);
+}
+/* 折线图 */
+div#Boxplot {
+    width: 1200px;
+    height: 400px;
+    margin:20px auto;
+}
+.fixed-table-toolbar {
+    display: none;
+}
+.bootstrap-table .table thead>tr>th {
+    width: 4%
+}
+#totalNum {
+    padding-left:40px;
+}
+#totalNum span {
+    display: inline-block;
+    width:280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 10px;
+    font-size:14px;
+    font-weight: 700;
+}
+/* ================================== */
+.searchVal {
+    width: 350px;
+    text-align: center;
+    display: inline-block;
+    border: none;
+    background-color: transparent;
+    color: #333;
+    padding: 7px 5px;
+}
+.searchBox {
+    margin-top: 15px;
+    border-bottom: 1px solid #333;
+}
+.searchBox .iconSch {
+    cursor:pointer;
+}
+div.chartsBox {
+    display:none;
+    text-align: center;
+    margin-top: 10px;
+}
+div.chartsBox .chartsBox-item {
+    display:inline-block;
+    width: 400px;
+    height: 400px;
+}
+#container .option {
+    margin: 15px 0;
+    padding: 10px 25px;
+    background: #e7e7e7;
+}
+#container .option p {
+    font-size:18px;
+    padding-left:50px;
+}
+#container .option .diy-time {
+    display:none;
+}
+.block-1 .timeChoose button,
+#container .option .timeBox button,
+#container .option .timeBox input {
+    margin:0 6px;
+}
+.block-1 .timeChoose button,
+#container .option .timeBox button{
+    font-size: 14px;
+    padding: 2px 10px;
+}
+#container .option .vue {
+    width: 200px;
+    color: #333;
+    text-align: center;
+    padding: 2px 5px;
+    font-size: 12px;
+    border: 1px solid #333;
+    background: transparent;
+    border-radius:3px;
+}
+#container .option .secondOption .vue {
+    width:200px;
+    margin:0 4px;
+}
+#container .option .vue:focus {
+     background:#b4b4b4;
+}

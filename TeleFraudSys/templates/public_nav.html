@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- head标签开始 -->
+    {% block head_meta %}
+    <meta charset="UTF-8">
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <meta HTTP-EQUIV="expires" CONTENT="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/ico" href="/static/images/favo.png" />
+    {% block title %}<title></title>{% endblock %}
+    {% endblock %}
+    <!-- head标签结束 -->
+
+    <!-- css标签 -->
+    {% block css %}
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/public_nav.css">
+    <style>
+        .datetimepicker .datetimepicker-hours span,
+        .datetimepicker .datetimepicker-minutes span{
+            font-size: 16px;
+        }
+        .modal-open .modal {
+            margin-top: 100px;
+        }
+        /*:-moz-placeholder {
+            color: #fff; opacity:1;
+        }
+        ::-moz-placeholder {
+            color: #fff;opacity:1;
+        }
+        input:-ms-input-placeholder{
+            color: #fff;opacity:1;
+        }
+        input::-webkit-input-placeholder{
+            color: #fff;opacity:1;
+        }*/
+    </style>
+    {% endblock %}
+    <!-- css结束 -->
+
+    <!-- 自己的css -->
+    {% block my_css %}
+    {% endblock %}
+</head>
+<body>
+<!-- 导航开始 -->
+{% block header %}
+<div id="nav">
+    <div class="modalDown">
+        <div class="nav_left">
+            <h3 style="color:#fff;">
+                <img src="/static/images/logo.png">&nbsp;&nbsp;电信诈骗系统
+            </h3>
+        </div>
+        <ul class="nav_middle">
+            <li class="main_li">
+                <a class="list_one li_a" href="/pages_index/abnormalSequenceCaller/">
+                    异常序列主叫预警
+                </a>
+                <p class="line"></p>
+            </li>
+            <li class="main_li">
+                <a class="list_five li_a" href="/pages_index/callerAnalysis/">
+                    主叫序列分析
+                </a>
+                <p class="line"></p>
+            </li>
+            <li class="main_li">
+                <a class="list_six li_a" href="/pages_index/calledAnalysis/">
+                    被叫序列分析
+                </a>
+                <p class="line"></p>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--提示信息-->
+<div class="modal fade" id="promptInfor" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">操作提示</h4>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center;font-size: 18px;color: #fff;font-weight: 900;"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--号码-->
+<div class="modal fade" id="phoneNumber" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: 1041;">
+    <div class="modal-dialog" style="width: 800px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">电话号码风险详情</h4>
+            </div>
+            <div class="modal-body">
+                <div style="border-bottom:1px dashed #c2c2c2;font-size: 14px;color: #fff;font-weight: bold;padding: 15px 0;">
+                    <i class="icon icon-map-marker"></i>&nbsp;您当前操作的电话号码是:
+                    <strong id="numberPoint" style="color:#ff6b6d;"></strong>
+                    <button class="pevNUM btn btn-primary btn-xs" style="display: inline-block;">
+                        上一个
+                    </button>
+                    <button class="nextNUM btn btn-primary btn-xs" style="display: inline-block;">
+                        下一个
+                    </button>
+                </div>
+                <div style="border-bottom:1px dashed #c2c2c2;padding:15px 0;">
+                    <span style="color: #fff;font-size: 14px;display: block;margin: 10px 0;"><i class="icon icon-map-marker"></i>&nbsp;历史标注情况</span>
+                    <span class="cishu">录音型：&nbsp;<b class="his-1"></b>&nbsp;次</span>
+                    <span class="cishu">非录音型：&nbsp;<b class="his-2"></b>&nbsp;次</span>
+                    <span class="cishu">反动宣传：&nbsp;<b class="his-3"></b>&nbsp;次</span>
+                    <span class="cishu">正常语音：&nbsp;<b class="his-4"></b>&nbsp;次</span>
+                    <span class="cishu">广告推销：&nbsp;<b class="his-6"></b>&nbsp;次</span>
+                    <span class="cishu">客服电话：&nbsp;<b class="his-7"></b>&nbsp;次</span>
+                    <span class="cishu">网络赌博：&nbsp;<b class="his-8"></b>&nbsp;次</span>
+                    <span class="cishu">无法判断：&nbsp;<b class="his-5"></b>&nbsp;次</span>
+                </div>
+                <div style="border-bottom:1px dashed #c2c2c2;padding:5px 0;">
+                    <span style="color: #fff;font-size: 14px;display:block;margin: 10px 0;"><i class="icon icon-map-marker"></i>&nbsp;播放语音文件</span>
+                    <b style="font-size: 12px;color: #fff;display: block;margin-bottom:10px;">（因存在网络请求速度原因,如个别不能正常自动播放,请您手动点击播放,给您带来不便,敬请谅解.）</b></span>
+                    <p class="lod" style="width: 100%;text-align: center;font-size: 16px;margin:10px 0;">正在拼命加载中...请稍后...</p>
+                    <div id="_voice" style="display: none;margin-top: 15px;">
+
+                    </div>
+                </div>
+                <div style="border-bottom:1px dashed #c2c2c2;padding:5px 0;">
+                    <span style="color: #fff;font-size: 14px;display:block;margin: 10px 0;"><i class="icon icon-map-marker"></i>&nbsp;语音文本信息</span>
+                    <p id="txt" style='display: none;'>
+                        <span style="color: #fff;font-size: 14px;display: inline-block;width: 90px;">文本内容：</span>
+                        <b></b>
+                    </p>
+                    <p id="mainword" style="color:#fff;margin-top:10px;display: none;">
+                        <span style="color: #ff6b6d;font-size: 14px;display: inline-block;width: 90px;">关键词：</span>
+                        <b></b>
+                    </p>
+                </div>
+                <div style="border-bottom:1px dashed #c2c2c2;padding: 20px 0;" class="soundtype">
+                    <span style="color: #fff;font-size: 14px;display: inline-block;width:120px;"><i class="icon icon-map-marker"></i>&nbsp;语音类型</span>
+                    <div class="typelist"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!-- 主要内容 -->
+{% block main %}
+
+{% endblock %}
+
+<!-- JS文件 -->
+{% block js %}
+<script src="/static/js/jquery-3.3.1.min.js"></script>
+<script src="/static/js/moment.min.js"></script>
+<script src="/static/echarts/echarts.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/bootstrap-table.min.js"></script>
+<script src="/static/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/static/js/bootstrap-table-zh-CN.min.js"></script>
+<script src="/static/js/method.js"></script>
+<script>
+    $('#nav .nav_middle .main_li .li_a').on('mouseover',function () {
+        $(this).siblings('.line').css({left:'0%'});
+    }).on('mouseout',function () {
+        $(this).siblings('.line').css({left:'-100%'});
+    });
+</script>
+{% endblock %}
+
+{% block write_js %}
+
+{% endblock %}
+
+<!-- 自己的JS -->
+{% block my_js %}
+{% endblock %}
+</body>
+</html>

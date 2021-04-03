@@ -1,0 +1,97 @@
+{% extends "public_nav.html" %}
+{% block title %}<title>主叫序列分析</title>{% endblock %}
+{% block my_css %}
+<link rel="stylesheet" href="/static/css/caller_analysis.css">
+<style>
+
+</style>
+{% endblock %}
+
+{% block main %}
+<div id="container">
+    <div id="content">
+        <div class="_option">
+            <div class="clearfix">
+                <div class="searchBox pull-right">
+                    <input type="text" class="searchVal" placeholder="输入主叫号码">
+                    <i class="icon icon-search iconSch"></i>
+                </div>
+            </div>
+        </div>
+        <div class="block block-0">
+            <h3 class="tit"><i class="icon icon-info"></i>&nbsp;主叫号码特征信息</h3>
+            <div id="totalNum" style='margin: 20px 0;'>
+                <span>主叫号码：<b class="n-1" style="color:#ff5722;"></b></span>
+                <span>平均呼叫时间间隔：<b class="n-2" style="color:#ff5722;"></b></span>
+                <span>平均通话时长：<b class="n-3" style="color:#ff5722;"></b></span>
+                <span>离散化呼叫时间间隔：<b class="n-4" style="color:#ff5722;"></b></span>
+                <span>活跃天数：<b class="n-5" style="color:#ff5722;"></b></span>
+                <span>极高极低呼叫时间间隔比列：<b class="n-6" style="color:#ff5722;"></b></span>
+                <span>通话成功次数：<b class="n-7" style="color:#ff5722;"></b></span>
+                <span>平均序列风险：<b class="n-8" style="color:#ff5722;"></b></span>
+            </div>
+        </div>
+        <div class="block block-1">
+            <div>
+                <h3 class="tit" style="display: inline-block;"><i class="icon icon-dashboard"></i>&nbsp;主叫通话序列风险图</h3>
+                <div class="timeChoose" style="display: inline-block;position: relative;top: -4px;">
+                    <button type="button" class="btn btn-primary btn-xs">时（hour）</button>
+                    <button type="button" class="btn btn-default btn-xs">日（day）</button>
+                    <button type="button" class="btn btn-default btn-xs">周（week）</button>
+                    <button type="button" class="btn btn-default btn-xs">月（month）</button>
+                </div>
+            </div>
+            <div class="chart">
+                <div id="Boxplot"></div>
+            </div>
+            <div class="chartsBox">
+                <div class="chartsBox-item" id="startTime-box"></div>
+                <div class="chartsBox-item" id="keyWord-box"></div>
+                <div class="chartsBox-item" id="endTime-box"></div>
+            </div>
+        </div>
+        <div class="block block-2">
+            <h3 class="tit"><i class="icon icon-cogs"></i>&nbsp;主叫序列历史检索</h3>
+            <div class="option">
+                <p class="timeBox">
+                    <span class="lit-title">时间范围选择：</span>
+                    <button type="button" class="btn btn-primary btn-xs" value="-2">近一天</button>
+                    <button type="button" class="btn btn-default btn-xs" value="-8">近一周</button>
+                    <button type="button" class="btn btn-default btn-xs" value="-31">近一月</button>
+                    <button type="button" class="btn btn-default btn-xs" value="-181">近半年</button>
+                    <button type="button" class="btn btn-default btn-xs" id="timeBtn" value="chooseTIME">自定义</button>
+                    <span class="diy-time">
+                        <input size="16" type="text" class="form_datetime start vue" placeholder="起始时间">
+                        <input size="16" type="text" class="form_datetime end vue" placeholder="终止时间">
+                    </span>
+                </p>
+                <p class="secondOption" style="margin-top: 10px;">
+                    <span class="lit-title">主叫号码：</span><input type="text" class="opt-1 vue" placeholder="主叫号码">
+                    <span class="lit-title">地区：</span><input type="text" class="opt-2 vue" placeholder="主叫地区">
+                    <span class="lit-title">风险范围：</span><input type="text" class="opt-3 vue" placeholder="最小风险">
+                    <input type="text" class="opt-4 vue" placeholder="最大风险">
+                    <button type="button" class="btn btn-primary btn-sm" id="sureSearch" style="padding: 2px 10px;">搜索</button>
+                </p>
+            </div>
+            <div class="tableModal-content">
+                <div id="tableModal-content">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block my_js %}
+<script src="/static/echarts/dataTool.min.js"></script>
+<script src="/static/echarts/echarts-wordcloud.js"></script>
+<script src="/static/js/caller_analysis.js"></script>
+{% endblock %}
+{% block write_js %}
+<script>
+    $('.list_five').css({color:'#ffc107'});
+</script>
+{% endblock %}

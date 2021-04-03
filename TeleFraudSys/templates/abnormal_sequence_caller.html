@@ -1,0 +1,114 @@
+{% extends "public_nav.html" %}
+{% block title %}<title>异常序列主叫预警</title>{% endblock %}
+{% block my_css %}
+<!--<link rel="stylesheet" href="/static/css/modalANDtable.css">-->
+<link rel="stylesheet" href="/static/css/abnormalSequenceCaller.css">
+<style>
+
+</style>
+{% endblock %}
+
+{% block main %}
+<div id="container">
+    <div id="content">
+        <!-- <div class="block block-1">
+            <h3 class="tit"><i class="icon icon-search"></i>&nbsp;高级搜索</h3>
+            <div class="option">
+                <p class="timeBox">
+                    <span class="lit-title">时间范围选择：</span>
+                    <button type="button" class="btn btn-primary btn-xs">近一天</button>
+                    <button type="button" class="btn btn-default btn-xs">近一周</button>
+                    <button type="button" class="btn btn-default btn-xs">近一月</button>
+                    <button type="button" class="btn btn-default btn-xs">近半年</button>
+                    <button type="button" class="btn btn-default btn-xs" id="timeBtn">自定义</button>
+                    <span class="diy-time">
+                    <input size="16" type="text" class="form_datetime start opt-3 vue" placeholder="起始时间">
+                    <input size="16" type="text" class="form_datetime end opt-4 vue" placeholder="终止时间">
+                </span>
+                </p>
+                <p class="secondOption">
+                    <span class="lit-title">主叫号码：</span><input type="text" class="opt-1 vue" placeholder="主叫号码">
+                    <span class="lit-title">地区：</span><input type="text" class="opt-1 vue" placeholder="主叫地区">
+                    <span class="lit-title">风险范围：</span><input type="text" class="opt-1 vue" placeholder="最小风险">
+                    <input type="text" class="opt-1 vue" placeholder="最大风险">
+                </p>
+                <div class="clearfix">
+                    <div class="searchBox pull-right">
+                        <button type="button" class="btn btn-primary btn-sm" id="sureSearch" style="margin: 20px 20px 0 0;">搜索</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="block block-1">
+        	<div>
+            	<h3 class="tit" style="display: inline-block;"><i class="icon icon-signal"></i>&nbsp;时间风险图</h3>			
+				<div class="featureChoose" style="display: inline-block;position: relative;top: -4px;">
+                    <button type="button" class="btn btn-primary btn-xs">特征1</button>
+                    <button type="button" class="btn btn-default btn-xs">特征2</button>
+                    <button type="button" class="btn btn-default btn-xs">特征3</button>
+                    <button type="button" class="btn btn-default btn-xs">特征4</button>
+                </div>
+        	</div>
+            <div class="chart">
+                <div id="Boxplot"></div>
+            </div>
+        </div>
+        <div class="block block-2">
+            <h3 class="tit"><i class="icon icon-screenshot"></i>&nbsp;高风险主叫列表</h3>
+            <div class="option">
+                <p class="timeBox">
+                    <span class="lit-title">时间范围选择：</span>
+                    <button type="button" class="btn btn-primary btn-xs" value="-2">近一天</button>
+                    <button type="button" class="btn btn-default btn-xs" value="-8">近一周</button>
+                    <button type="button" class="btn btn-default btn-xs" value="-31">近一月</button>
+                    <button type="button" class="btn btn-default btn-xs" value="-181">近半年</button>
+                    <button type="button" class="btn btn-default btn-xs" id="timeBtn" value="chooseTIME">自定义</button>
+                    <span class="diy-time">
+                        <input size="16" type="text" class="form_datetime start vue" placeholder="起始时间">
+                        <input size="16" type="text" class="form_datetime end vue" placeholder="终止时间">
+                    </span>
+                </p>
+                <p class="secondOption" style="margin-top: 10px;">
+                    <span class="lit-title">主叫号码：</span><input type="text" class="opt-1 vue" placeholder="主叫号码">
+                    <span class="lit-title">地区：</span><input type="text" class="opt-2 vue" placeholder="主叫地区">
+                    <span class="lit-title">风险范围：</span><input type="text" class="opt-3 vue" placeholder="最小风险">
+                    <input type="text" class="opt-4 vue" placeholder="最大风险">
+                    <button type="button" class="btn btn-primary btn-sm" id="sureSearch" style="padding: 2px 10px;">搜索</button>
+                </p>
+            </div>
+            <div class="riskList">
+                <!--<select id="level" class="btn btn-default">-->
+                <!--<option value="" disabled selected>排序指标</option>-->
+                <!--<option value="按总体风险">按总体风险</option>-->
+                <!--<option value="按序列风险">按序列风险</option>-->
+                <!--</select>-->
+                <!--<p id="loadImg" style="width:100%;text-align:center;font-weight:800;">正在拼命加载中...请稍等</p>-->
+                <!-- <div>
+                    <div id="toolbar" class="form-inline">
+                        <button id="button1" class="btn btn-default">上一页</button>
+                        <input id="page" class="form-control" style="width:60px;border: 1px solid silver;" type="number" min="1" value="1">
+                        <button id="button2" class="btn btn-default">跳转</button>
+                        <button id="button3" class="btn btn-default">下一页</button>
+                    </div>
+                    <div class="_search" style="display: inline-block;">
+                        <input type="text" class="searchVal" placeholder="搜索"/>
+                        <button class="btn btn-primary">确定</button>
+                    </div>
+                </div> -->
+                <div id="riskList"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block my_js %}
+<script src="/static/js/abnormalSequenceCaller.js"></script>
+{% endblock %}
+
+{% block write_js %}
+<script>
+    $('.list_one').css({color:'#ffc107'});
+</script>
+{% endblock %}

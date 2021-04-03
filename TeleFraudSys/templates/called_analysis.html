@@ -1,0 +1,45 @@
+{% extends "public_nav.html" %}
+{% block title %}<title>被叫序列分析</title>{% endblock %}
+{% block my_css %}
+<link rel="stylesheet" href="/static/css/called_analysis.css">
+<style>
+
+</style>
+{% endblock %}
+
+{% block main %}
+<div id="container">
+    <div id="content">
+        <div class="block block-0">
+            <h3 class="tit"><i class="icon icon-info"></i>&nbsp;通话信息</h3>
+            <div id="totalNum" style='margin: 20px 0;'>
+                <!--<span>主叫号码：<b class="n-1" style="color:#ff5722;"></b></span>-->
+                <!--<span>被叫号码：<b class="n-2" style="color:#ff5722;"></b></span>-->
+                <!--<span>开始时间：<b class="n-3" style="color:#ff5722;"></b></span>-->
+                <!--<span>结束时间：<b class="n-4" style="color:#ff5722;"></b></span>-->
+                <!--<span>通话时长：<b class="n-5" style="color:#ff5722;"></b></span>-->
+                <!--<span>主叫地：<b class="n-6" style="color:#ff5722;"></b></span>-->
+                <!--<span>被叫地：<b class="n-7" style="color:#ff5722;"></b></span>-->
+                <!--<span>诈骗概率：<b class="n-8" style="color:#ff5722;"></b></span>-->
+                <!--<span>黑名单：<b class="n-9" style="color:#ff5722;"></b></span>-->
+            </div>
+        </div>
+        <div class="block block-1">
+            <h3 class="tit"><i class="icon icon-ticket"></i>&nbsp;被叫号码关联图</h3>
+            <div class="chart">
+                <div id="Boxplot"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block my_js %}
+<script src="/static/js/called_analysis.js"></script>
+{% endblock %}
+{% block write_js %}
+<script>
+    $('.list_six').css({color:'#ffc107'});
+</script>
+{% endblock %}
